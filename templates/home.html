@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>email spam classifier</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='home.css')}}" />
+    
+  </head>
+  <body>
+    <h1 class="title">Email Spam Classifier</h1>
+    <div class="main">
+
+    <form method="POST" action="/predict">
+      <h3><b>Enter email here--></b></h3>
+      <textarea name="message" id="msg"></textarea>
+      <input class="btn" type="submit" />
+    </form>
+<div class="output">
+
+    {% if prediction %}
+    <div class="result">This is  <b>{{ prediction }}</b>  message</div>
+    {% endif %}</div>
+</div>
+  </body>
+</html>
