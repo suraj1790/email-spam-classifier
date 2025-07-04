@@ -28,14 +28,13 @@ def transform_text(text):
 
     # remove penchuation and stopwords
     y = []
-
     for word in text:
         if word.isalnum():
             y.append(word)
 
+
     text = y.copy()
     y.clear()
-
     for word in text:
         if word not in stopwords.words("english") or word not in string.punctuation:
             y.append(word)
@@ -43,9 +42,6 @@ def transform_text(text):
     # print(y)
     text = y.copy()
     y.clear()
-
-
-
 
     # now stem thw word
     stemmer = PorterStemmer()
@@ -58,11 +54,22 @@ def transform_text(text):
 @app.route("/predict", methods=["GET","POST"])
 def predict():
     pridct = None
+    message = None
     if request.method == "POST":
         message = request.form.get("message")
+    message = transform_text(message)
+    print(message)
+    
+    vector = vectorizer.transform([message]).toarray()
+    print(vector)
+    ans = model.predict(vector)
+    if ans == 0:
+        predict = "Not SPAM"
+    else:
+        predict = "SPAM"
+    print(predict)
 
-
-    return render_template("home.html",prediction="SPAM")
+    return render_template("home.html",prediction=predict)
 
 
 
