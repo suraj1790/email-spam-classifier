@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <title>email spam classifier</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='home.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}" />
     <link rel="icon" href="/static/images.jpeg" type="image/jpeg">
-    
   </head>
+  
   <body>
     <h1 class="title">Email Spam Classifier</h1>
     <div class="main">
-
     <form method="POST" action="/predict">
-      <h3><b>Enter email here--></b></h3>
+      <h3><b>Enter email here:</b></h3>
       <textarea name="message" id="msg"></textarea>
       <input class="btn" type="submit" />
     </form>

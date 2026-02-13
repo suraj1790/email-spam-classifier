@@ -9,15 +9,11 @@ nltk.download("stopwords")
 model = pickle.load(open("model.pkl","rb"))
 vectorizer = pickle.load(open("vectorizer.pkl","rb"))
 
-
-
 app = Flask(__name__)
-
 
 @app.route("/",methods=["GET","POST"])
 def home():
-    return render_template("home.html")
-
+    return render_template("index.html")
 
 def transform_text(text):
     # convert onto lowercase
@@ -34,7 +30,7 @@ def transform_text(text):
 
 
     text = y.copy()
-    y.clear()
+    y.clear()                   # clear privious list
     for word in text:
         if word not in stopwords.words("english") or word not in string.punctuation:
             y.append(word)
@@ -69,9 +65,9 @@ def predict():
         predict = "SPAM"
     print(predict)
 
-    return render_template("home.html",prediction=predict)
+    return render_template("index.html",prediction=predict)
 
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=5008)
+    app.run(debug=True)
