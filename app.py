@@ -6,8 +6,8 @@ import string
 from nltk.corpus import stopwords
 nltk.download("stopwords")
 
-model = pickle.load(open("model.pkl","rb"))
-vectorizer = pickle.load(open("vectorizer.pkl","rb"))
+model = pickle.load(open("model.pkl", "rb"))
+vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
 app = Flask(__name__)
 
@@ -49,7 +49,7 @@ def transform_text(text):
 
 @app.route("/predict", methods=["GET","POST"])
 def predict():
-    pridct = None
+    predict_val = None
     message = None
     if request.method == "POST":
         message = request.form.get("message")
@@ -60,12 +60,12 @@ def predict():
     print(vector)
     ans = model.predict(vector)
     if ans == 0:
-        predict = "Not SPAM"
+        predict_val = "Not SPAM"
     else:
-        predict = "SPAM"
+        predict_val = "SPAM"
     print(predict)
 
-    return render_template("index.html",prediction=predict)
+    return render_template("index.html",prediction=predict_val)
 
 
 
