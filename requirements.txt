@@ -1,6 +1,7 @@
 numpy
 pandas
 nltk
+flask
 scikit-learn
 wordcloud
 gunicorn
